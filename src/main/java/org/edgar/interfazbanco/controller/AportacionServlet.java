@@ -10,7 +10,7 @@ import org.edgar.interfazbanco.service.AportacionServiceSessionImplement;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/aportaciones")
+@WebServlet("/aportacion")
 public class AportacionServlet extends HttpServlet {
 
     private final AportacionServiceSessionImplement aportacionService = new AportacionServiceSessionImplement();
@@ -33,13 +33,14 @@ public class AportacionServlet extends HttpServlet {
 
         if (montoStr == null || tipo == null || montoStr.isEmpty() || tipo.isEmpty()) {
             request.setAttribute("mensaje", "Todos los campos son obligatorios.");
-            request.getRequestDispatcher("aportaciones.jsp").forward(request, response);
+            request.getRequestDispatcher("cliente/aportaciones.jsp").forward(request, response);
             return;
         }
 
         try {
             double monto = Double.parseDouble(montoStr);
-            boolean registrado = aportacionService.registrarAportacion(usuario.getId(), monto, tipo);
+            String cedulaUsuario = usuario.getCedula(); // ✅ Usamos la cédula en lugar del ID
+            boolean registrado = aportacionService.registrarAportacion(cedulaUsuario, monto, tipo);
 
             if (registrado) {
                 request.setAttribute("mensaje", "Aportación registrada correctamente.");
@@ -67,8 +68,9 @@ public class AportacionServlet extends HttpServlet {
             return;
         }
 
-        List<Aportacion> aportaciones = aportacionService.obtenerAportacionesPorUsuario(usuario.getId());
+        String cedulaUsuario = usuario.getCedula(); // ✅ Usamos la cédula
+        List<Aportacion> aportaciones = aportacionService.obtenerAportacionesPorUsuario(cedulaUsuario);
         request.setAttribute("aportaciones", aportaciones);
-        request.getRequestDispatcher("aportaciones.jsp").forward(request, response);
+        request.getRequestDispatcher("cliente/aportaciones.jsp").forward(request, response);
     }
 }

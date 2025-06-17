@@ -12,7 +12,7 @@
 
     <div class="card shadow mt-4">
         <div class="card-body">
-            <form id="crearUsuarioForm">
+            <form id="crearUsuarioForm" action="../crear-usuario" method="post">
                 <div class="mb-3">
                     <label class="form-label">Cédula</label>
                     <input type="text" class="form-control" name="cedula" required>
@@ -47,12 +47,13 @@
     </div>
 </div>
 
+<!--
 <script>
     document.getElementById("crearUsuarioForm").addEventListener("submit", function(e) {
         e.preventDefault();
         const form = new FormData(this);
 
-        fetch("../crear-usuario", {
+        fetch("../crear_usuario", {
             method: "POST",
             body: new URLSearchParams(form)
         })
@@ -69,5 +70,6 @@
             });
     });
 </script>
+-->
 </body>
 </html>

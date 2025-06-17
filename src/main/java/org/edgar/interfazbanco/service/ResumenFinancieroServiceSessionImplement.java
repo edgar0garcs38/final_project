@@ -16,17 +16,17 @@ public class ResumenFinancieroServiceSessionImplement {
     private final AportacionService aportacionDao = new AportacionServiceImplement();
     private final PrestamoService prestamoDao = new PrestamoServiceImplement();
 
-    public ResumenFinanciero calcularResumen(int idUsuario) {
+    public ResumenFinanciero calcularResumen(String cedulaUsuario) {
         ResumenFinanciero resumen = new ResumenFinanciero();
 
         try {
             // Aportaciones
-            List<Aportacion> aportaciones = aportacionDao.obtenerAportacionesPorUsuario(idUsuario);
+            List<Aportacion> aportaciones = aportacionDao.obtenerAportacionesPorUsuario(cedulaUsuario);
             double totalAportado = aportaciones.stream().mapToDouble(Aportacion::getMonto).sum();
             resumen.setTotalAportado(totalAportado);
 
             // Préstamos
-            List<Prestamo> prestamos = prestamoDao.obtenerPrestamosPorUsuario(idUsuario);
+            List<Prestamo> prestamos = prestamoDao.obtenerPrestamosPorUsuario(cedulaUsuario);
             double totalPrestamos = prestamos.stream().mapToDouble(Prestamo::getMonto).sum();
             double totalInteres = prestamos.stream().mapToDouble(Prestamo::getInteres).sum();
             resumen.setTotalPrestamos(totalPrestamos);

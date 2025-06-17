@@ -26,6 +26,6 @@ public class EliminarUsuarioServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        response.sendRedirect("admin/gestion_usuarios.jsp");
+        response.sendRedirect("admin/gestion-usuarios?mensaje=eliminado");
     }
 }

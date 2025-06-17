@@ -15,18 +15,18 @@ public class AportacionServiceSessionImplement {
         this.aportacionDao = new AportacionServiceImplement();
     }
 
-    public boolean registrarAportacion(int idUsuario, double monto, String tipo) {
+    public boolean registrarAportacion(String cedulaUsuario, double monto, String tipo) {
         try {
-            return aportacionDao.registrarAportacion(idUsuario, monto, tipo);
+            return aportacionDao.registrarAportacion(cedulaUsuario, monto, tipo);
         } catch (SQLException e) {
             e.printStackTrace(); // Se puede mejorar con logs
             return false;
         }
     }
 
-    public List<Aportacion> obtenerAportacionesPorUsuario(int idUsuario) {
+    public List<Aportacion> obtenerAportacionesPorUsuario(String cedulaUsuario) {
         try {
-            return aportacionDao.obtenerAportacionesPorUsuario(idUsuario);
+            return aportacionDao.obtenerAportacionesPorUsuario(cedulaUsuario);
         } catch (SQLException e) {
             e.printStackTrace(); // Se puede mejorar con logs
             return null;

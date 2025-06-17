@@ -10,15 +10,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("⏳ Enviando login con:", cedula, clave);
 
-        fetch("/interfaz_banco_war_exploded/login", {  // Ruta ABSOLUTA
+        fetch("login", {
             method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: `cedula=${encodeURIComponent(cedula)}&clave=${encodeURIComponent(clave)}`
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "cedula=" + encodeURIComponent(cedula) + "&clave=" + encodeURIComponent(clave)
         })
             .then((response) => {
                 console.log("📩 Respuesta recibida. Redirected:", response.redirected, "Status:", response.status);
                 if (response.redirected) {
                     window.location.href = response.url;
+                    return null;
                 } else {
                     return response.text();
                 }
@@ -31,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             })
             .catch((error) => {
-                console.error("❌ Error de conexión con el servidor:", error);
+                console.error("❌ Error AJAX:", error);
                 mensaje.textContent = "Error de conexión con el servidor.";
                 mensaje.style.display = "block";
             });

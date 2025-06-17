@@ -33,11 +33,17 @@ public class CrearUsuarioServlet extends HttpServlet {
         u.setApellidos(apellidos);
 
         try {
-            usuarioService.crearUsuario(u);
+            boolean creado = usuarioService.crearUsuario(u);
+            if (creado) {
+                // NO usar getWriter() aquí
+                response.sendRedirect("admin/gestion-usuarios?mensaje=ok");
+            } else {
+                // Si quieres mostrar error, mejor redirige con parámetro
+                response.sendRedirect("admin/gestion-usuarios?mensaje=error");
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            response.sendRedirect("admin/gestion-usuarios?mensaje=error");
         }
-
-        response.sendRedirect("admin/gestion_usuarios.jsp");
     }
 }

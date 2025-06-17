@@ -30,7 +30,7 @@ public class ReportePrestamosServlet extends HttpServlet {
         }
 
         try {
-            List<Prestamo> prestamos = prestamoService.obtenerPrestamosPorUsuario(usuario.getId());
+            List<Prestamo> prestamos = prestamoService.obtenerPrestamosPorUsuario(usuario.getCedula());
 
             // Configurar PDF
             response.setContentType("application/pdf");

@@ -18,6 +18,14 @@
     <h3>Solicitar Préstamo</h3>
 
     <form action="../prestamo" method="post" class="card p-4 shadow-sm mt-4">
+        <%
+            String mensaje = (String) request.getAttribute("mensaje");
+            if (mensaje != null) {
+        %>
+        <div class="alert alert-info mt-3"><%= mensaje %></div>
+        <%
+            }
+        %>
         <div class="mb-3">
             <label for="tipo" class="form-label">Tipo de Préstamo</label>
             <select class="form-select" id="tipo" name="tipo" required>

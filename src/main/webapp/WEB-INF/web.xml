@@ -7,6 +7,6 @@
 
     <!-- Página de inicio cuando se accede a /interfaz_banco/ -->
     <welcome-file-list>
-        <welcome-file>login.jsp</welcome-file>
+        <welcome-file>Login.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

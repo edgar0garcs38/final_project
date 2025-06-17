@@ -9,17 +9,13 @@ import java.util.List;
 
 public class PrestamoServiceSessionImplement {
 
-    private final PrestamoService prestamoService;
+    private final PrestamoService prestamoService = new PrestamoServiceImplement();
 
-    public PrestamoServiceSessionImplement() {
-        this.prestamoService = new PrestamoServiceImplement();
+    public boolean registrarPrestamo(String cedulaUsuario, String tipo, double monto, int plazo) throws SQLException {
+        return prestamoService.registrarPrestamo(cedulaUsuario, tipo, monto, plazo);
     }
 
-    public boolean registrarPrestamo(int idUsuario, String tipo, double monto, int plazo) throws SQLException {
-        return prestamoService.registrarPrestamo(idUsuario, tipo, monto, plazo);
-    }
-
-    public List<Prestamo> obtenerPrestamosPorUsuario(int idUsuario) throws SQLException {
-        return prestamoService.obtenerPrestamosPorUsuario(idUsuario);
+    public List<Prestamo> obtenerPrestamosPorUsuario(String cedulaUsuario) throws SQLException {
+        return prestamoService.obtenerPrestamosPorUsuario(cedulaUsuario);
     }
 }

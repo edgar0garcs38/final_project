@@ -32,8 +32,8 @@ public class MisPrestamosServlet extends HttpServlet {
         }
 
         try {
-            int idUsuario = usuario.getId();
-            List<Prestamo> prestamos = prestamoService.obtenerPrestamosPorUsuario(idUsuario);
+            String cedulaUsuario = usuario.getCedula();
+            List<Prestamo> prestamos = prestamoService.obtenerPrestamosPorUsuario(cedulaUsuario);
 
             request.setAttribute("prestamos", prestamos);
             request.getRequestDispatcher("mis_prestamos.jsp").forward(request, response);

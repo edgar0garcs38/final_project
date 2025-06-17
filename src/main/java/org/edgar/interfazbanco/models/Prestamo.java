@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Prestamo {
     private int id;
-    private int idUsuario;
+    private String cedulaUsuario; // cedula como String
     private String tipo;
     private double monto;
     private double interes;
@@ -12,13 +12,13 @@ public class Prestamo {
     private LocalDateTime fechaFin;
     private String estado;
 
-    public Prestamo (){
-
+    public Prestamo() {
     }
 
-    public Prestamo (int id, int idUsuario, String tipo, double monto, double interes, LocalDateTime fechaInicio, LocalDateTime fechaFin, String estado) {
+    public Prestamo(int id, String cedulaUsuario, String tipo, double monto, double interes,
+                    LocalDateTime fechaInicio, LocalDateTime fechaFin, String estado) {
         this.id = id;
-        this.idUsuario = idUsuario;
+        this.cedulaUsuario = cedulaUsuario;
         this.tipo = tipo;
         this.monto = monto;
         this.interes = interes;
@@ -35,12 +35,12 @@ public class Prestamo {
         this.id = id;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public String getCedulaUsuario() {
+        return cedulaUsuario;
     }
 
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setCedulaUsuario(String cedulaUsuario) {
+        this.cedulaUsuario = cedulaUsuario;
     }
 
     public String getTipo() {

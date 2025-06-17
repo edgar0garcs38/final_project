@@ -9,6 +9,7 @@ import org.edgar.interfazbanco.dao.UsuarioServiceImplement;
 import org.edgar.interfazbanco.models.Usuario;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/admin/gestion-usuarios")
@@ -23,10 +24,11 @@ public class GestionUsuariosServlet extends HttpServlet {
         try {
             List<Usuario> usuarios = usuarioService.listarUsuarios();
             request.setAttribute("usuarios", usuarios);
-        } catch (Exception e) {
+            request.getRequestDispatcher("/admin/gestion_usuarios.jsp").forward(request, response);
+        } catch (SQLException e) {
             e.printStackTrace();
+            response.getWriter().write("Error al cargar usuarios.");
         }
-
-        request.getRequestDispatcher("/admin/gestion_usuarios.jsp").forward(request, response);
     }
 }
+

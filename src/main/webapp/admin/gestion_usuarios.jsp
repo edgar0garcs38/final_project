@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="org.edgar.interfazbanco.models.Usuario" %>
+
 <%
     Usuario admin = (Usuario) session.getAttribute("usuarioLogueado");
     if (admin == null || !"admin".equalsIgnoreCase(admin.getRol())) {
@@ -9,7 +10,12 @@
     }
 
     List<Usuario> usuarios = (List<Usuario>) request.getAttribute("usuarios");
+    if (usuarios == null) {
+        response.sendRedirect("gestion-usuarios"); // Reenvía al servlet si se entra directo
+        return;
+    }
 %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,6 +26,19 @@
 <body>
 <div class="container mt-5">
     <h3 class="mb-4">Gestión de Usuarios</h3>
+
+    <%
+        String mensaje = request.getParameter("mensaje");
+        if ("ok".equals(mensaje)) {
+    %>
+    <div class="alert alert-success">Usuario creado correctamente.</div>
+    <%
+    } else if ("error".equals(mensaje)) {
+    %>
+    <div class="alert alert-danger">No se pudo crear el usuario.</div>
+    <%
+        }
+    %>
 
     <!-- Formulario para crear nuevo usuario -->
     <form action="crear-usuario" method="post" class="card p-3 shadow-sm mb-4">
@@ -62,21 +81,26 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="u" items="${usuarios}">
-            <tr>
-                <td>${u.cedula}</td>
-                <td>${u.nombres}</td>
-                <td>${u.apellidos}</td>
-                <td>${u.rol}</td>
-                <td>
-                    <form action="eliminar-usuario" method="post" onsubmit="return confirm('¿Eliminar usuario?')" style="display:inline;">
-                        <input type="hidden" name="cedula" value="${u.cedula}" />
-                        <button class="btn btn-sm btn-danger">Eliminar</button>
-                    </form>
-                    <!-- Edición opcional con modal -->
-                </td>
-            </tr>
-        </c:forEach>
+        <%
+            if (usuarios != null) {
+                for (Usuario u : usuarios) {
+        %>
+        <tr>
+            <td><%= u.getCedula() %></td>
+            <td><%= u.getNombres() %></td>
+            <td><%= u.getApellidos() %></td>
+            <td><%= u.getRol() %></td>
+            <td>
+                <form action="../eliminar-usuario" method="post" onsubmit="return confirm('¿Eliminar usuario?')" style="display:inline;">
+                    <input type="hidden" name="cedula" value="<%= u.getCedula() %>" />
+                    <button class="btn btn-sm btn-danger">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        <%
+                }
+            }
+        %>
         </tbody>
     </table>
 </div>

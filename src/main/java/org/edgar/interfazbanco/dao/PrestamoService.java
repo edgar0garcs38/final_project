@@ -6,6 +6,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface PrestamoService {
-    boolean registrarPrestamo(int idUsuario, String tipo, double monto, int plazo) throws SQLException;
-    List<Prestamo> obtenerPrestamosPorUsuario(int idUsuario) throws SQLException;
+    boolean registrarPrestamo(String cedulaUsuario, String tipo, double monto, int plazo) throws SQLException;
+    List<Prestamo> obtenerPrestamosPorUsuario(String cedulaUsuario) throws SQLException;
 }

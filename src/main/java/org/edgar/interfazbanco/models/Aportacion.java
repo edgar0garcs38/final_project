@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Aportacion {
     private int id;
-    private int idUsuario;
+    private String cedulaUsuario; // cambiado de int a String
     private double monto;
     private LocalDateTime fecha;
     private String tipo; // Ej: "Ordinaria", "Extraordinaria"
@@ -17,11 +17,11 @@ public class Aportacion {
         this.id = id;
     }
 
-    public int getIdUsuario() {
-        return idUsuario;
+    public String getCedulaUsuario() {
+        return cedulaUsuario;
     }
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setCedulaUsuario(String cedulaUsuario) {
+        this.cedulaUsuario = cedulaUsuario;
     }
 
     public double getMonto() {

@@ -52,19 +52,19 @@ public class LoginServlet extends HttpServlet {
                         response.sendRedirect("socio/dashboard.jsp");
                         break;
                     default:
-                        response.sendRedirect("login.jsp");
+                        response.sendRedirect("Login.jsp");
                         break;
                 }
 
             } else {
                 request.setAttribute("error", "Credenciales incorrectas.");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                request.getRequestDispatcher("Login.jsp").forward(request, response);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Error interno del servidor.");
-            request.getRequestDispatcher("login.jsp").forward(request, response);
+            request.getRequestDispatcher("Login.jsp").forward(request, response);
         }
     }
 }

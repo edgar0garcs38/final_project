@@ -30,7 +30,8 @@ public class ReporteAportacionesServlet extends HttpServlet {
         }
 
         try {
-            List<Aportacion> aportaciones = aportacionService.obtenerAportacionesPorUsuario(usuario.getId());
+            String cedulaUsuario = usuario.getCedula(); // ✅ Se usa la cédula
+            List<Aportacion> aportaciones = aportacionService.obtenerAportacionesPorUsuario(cedulaUsuario);
 
             response.setContentType("application/pdf");
             response.setHeader("Content-Disposition", "attachment; filename=reporte_aportaciones.pdf");

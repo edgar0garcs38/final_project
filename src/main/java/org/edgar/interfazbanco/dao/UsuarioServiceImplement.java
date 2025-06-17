@@ -51,7 +51,11 @@ public class UsuarioServiceImplement implements UsuarioService {
                 u.setApellidos(rs.getString("apellidos"));
                 usuarios.add(u);
             }
+
+            System.out.println("Usuarios cargados desde la base: " + usuarios.size()); // 💡
         }
+
         return usuarios;
     }
+
 }

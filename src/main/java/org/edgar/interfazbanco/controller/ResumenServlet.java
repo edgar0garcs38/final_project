@@ -26,10 +26,10 @@ public class ResumenServlet extends HttpServlet {
             return;
         }
 
-        ResumenFinanciero resumen = resumenService.calcularResumen(usuario.getId());
-        request.setAttribute("resumen", resumen);
+        String cedulaUsuario = usuario.getCedula(); // ✅ cambiar a String
+        ResumenFinanciero resumen = resumenService.calcularResumen(cedulaUsuario);
 
-        // Muestra en resumen.jsp
+        request.setAttribute("resumen", resumen);
         request.getRequestDispatcher("resumen.jsp").forward(request, response);
     }
 }

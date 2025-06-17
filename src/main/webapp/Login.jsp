@@ -1,83 +1,42 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: israe
-  Date: 4/6/2025
-  Time: 21:14
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!DOCTYPE html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Acceso - Banco</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/estilosLogin.css">
+    <title>Login - Interfaz Banco</title>
+    <link rel="stylesheet" href="recursos/css/bootstrap.min.css">
 </head>
-<body>
+<body class="bg-light">
 
-<div class="container">
-    <div class="left">
-        <h1 class="fw-bold">¡Donde puedes CRECER!</h1>
-        <p class="text-muted">El banco que cree en tu futuro</p>
-    </div>
-
-    <div class="right">
-        <div class="form-box">
-            <div class="logo d-flex align-items-center mb-3">
-                <img src="<%= request.getContextPath() %>/img/logo.png" alt="logo banco" class="me-2">
-                <h2>BANCO ESTUDIANTIL</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-5">
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Inicio de Sesión</h4>
+                </div>
+                <div class="card-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="cedula" class="form-label">Cédula</label>
+                            <input type="text" class="form-control" id="cedula" name="cedula" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="clave" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="clave" name="clave" required>
+                        </div>
+                        <div id="mensajeError" class="text-danger text-center mb-3" style="display:none;"></div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-            <div class="toggle-buttons">
-                <button id="btnLogin" class="active" onclick="toggleForm('login')">Iniciar Sesión</button>
-                <button id="btnRegister" onclick="toggleForm('register')">Crear Cuenta</button>
-            </div>
-
-            <!-- Formulario Login -->
-            <form id="loginForm" class="active" action="<%= request.getContextPath() %>/login" method="post">
-                <div class="form-group">
-                    <label for="loginEmail">Correo electrónico</label>
-                    <input type="email" id="loginEmail" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="loginPassword">Contraseña</label>
-                    <input type="password" id="loginPassword" name="password" required>
-                </div>
-                <button type="submit" class="submit-btn">Acceder</button>
-                <div class="link mt-2">
-                    <a href="#">¿Olvidó su contraseña?</a>
-                </div>
-            </form>
-
-            <!-- Formulario Registro de Usuario Nuevo -->
-            <form id="registerForm" action="<%= request.getContextPath() %>/registro" method="post">
-                <div class="form-group">
-                    <label for="regNombres">Nombre</label>
-                    <input type="text" id="regNombre" name="nombre" required>
-                </div>
-                <div class="form-group">
-                    <label for="regApellidos">Apellido</label>
-                    <input type="text" id="regApellido" name="apellido" required>
-                </div>
-                <div class="form-group">
-                    <label for="regCedula">Cédula</label>
-                    <input type="text" id="regCedula" name="cedula" required>
-                </div>
-                <div class="form-group">
-                    <label for="regEmail">Correo electrónico</label>
-                    <input type="email" id="regEmail" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="regPassword">Contraseña</label>
-                    <input type="password" id="regPassword" name="password" required>
-                </div>
-                <button type="submit" class="submit-btn">Crear Cuenta</button>
-            </form>
         </div>
     </div>
 </div>
 
-<script src="${pageContext.request.contextPath}/Js/Login.js"></script>
+<script src="recursos/js/login.js"></script>
 
 </body>
 </html>

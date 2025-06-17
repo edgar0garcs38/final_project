@@ -11,15 +11,6 @@
     <h2 class="text-center">Bienvenido al Panel del Administrador</h2>
 
     <div class="row row-cols-1 row-cols-md-2 g-4 mt-4 justify-content-center">
-        <!-- Préstamos -->
-        <div class="col">
-            <div class="card h-100 shadow">
-                <div class="card-body text-center">
-                    <h5 class="card-title">Préstamos</h5>
-                    <a href="prestamos.jsp" class="btn btn-primary mt-2">Gestionar</a>
-                </div>
-            </div>
-        </div>
 
         <!-- Aportaciones -->
         <div class="col">

@@ -11,13 +11,13 @@ import java.util.List;
 public class AportacionServiceImplement implements AportacionService {
 
     @Override
-    public boolean registrarAportacion(int idUsuario, double monto, String tipo) throws SQLException {
+    public boolean registrarAportacion(String cedulaUsuario, double monto, String tipo) throws SQLException {
         LocalDateTime fecha = LocalDateTime.now();
 
         try (Connection conn = Conexion.getConnection()) {
             String sql = "INSERT INTO Aportaciones (idUsuario, Monto, Tipo, Fecha) VALUES (?, ?, ?, ?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, idUsuario);
+            stmt.setString(1, cedulaUsuario); // ✅ ahora se usa String
             stmt.setDouble(2, monto);
             stmt.setString(3, tipo);
             stmt.setTimestamp(4, Timestamp.valueOf(fecha));
@@ -28,19 +28,19 @@ public class AportacionServiceImplement implements AportacionService {
     }
 
     @Override
-    public List<Aportacion> obtenerAportacionesPorUsuario(int idUsuario) throws SQLException {
+    public List<Aportacion> obtenerAportacionesPorUsuario(String cedulaUsuario) throws SQLException {
         List<Aportacion> lista = new ArrayList<>();
 
         try (Connection conn = Conexion.getConnection()) {
             String sql = "SELECT * FROM Aportaciones WHERE idUsuario = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, idUsuario);
+            stmt.setString(1, cedulaUsuario); // ✅ ahora se usa String
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Aportacion a = new Aportacion();
                 a.setId(rs.getInt("idAportacion"));
-                a.setIdUsuario(rs.getInt("idUsuario"));
+                a.setCedulaUsuario(rs.getString("idUsuario")); // ✅ nuevo setter
                 a.setMonto(rs.getDouble("Monto"));
                 a.setTipo(rs.getString("Tipo"));
                 a.setFecha(rs.getTimestamp("Fecha").toLocalDateTime());
